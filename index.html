@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAZAKHSTAN TRIP 2026 🇰🇿 | Itinerary & Live Sheet Sync</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Prompt', sans-serif; background-color: #f1f5f9; }
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.88)), url('https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=1800&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Top Live Sync Status Bar -->
+    <div class="bg-slate-900 text-slate-200 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md bg-slate-900/95">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span id="sync-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span id="sync-status" class="font-medium">เชื่อมต่อข้อมูล Google Sheet (Kasachstan Trip 2026) เรียบร้อย</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="syncAllSheets()" class="bg-sky-600 hover:bg-sky-500 text-white px-3 py-1 rounded-lg font-medium transition flex items-center gap-1.5 shadow-sm">
+                    <i id="sync-icon" class="fa-solid fa-arrows-rotate"></i> ซิงค์ข้อมูลล่าสุดจาก Sheet
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <header class="hero-bg text-white py-16 md:py-24 px-4 text-center shadow-lg relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2 bg-sky-500/80 backdrop-blur-sm text-white text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 shadow">
+                <i class="fa-solid fa-snowflake"></i> Winter Adventure • <span id="hero-temp">อุณหภูมิโดยประมาณอยู่ที่ -5°C ถึง 5°C</span>
+            </div>
+            <h1 id="hero-title" class="text-4xl md:text-6xl font-bold tracking-tight mb-3">KAZAKHSTAN TRIP 2026 🇰🇿</h1>
+            <p class="text-base md:text-xl text-slate-200 font-light max-w-2xl mx-auto">
+                ตะลุยหุบเขาแกรนด์แคนยอน ทะเลสาบน้ำแข็ง ป่าสนกลางน้ำ และสกีรีสอร์ทหิมะแห่งเมืองอัลมาตี (Almaty)
+            </p>
+
+            <!-- Badges สรุปข้อมูลทริป -->
+            <div class="mt-8 flex flex-wrap justify-center gap-3 text-sm">
+                <div class="bg-white/15 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/20 flex items-center gap-2">
+                    <i class="fa-regular fa-calendar-days text-sky-300"></i>
+                    <span id="hero-dates">22 Nov - 28 Nov 2026 (7 Days)</span>
+                </div>
+                <div class="bg-white/15 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/20 flex items-center gap-2">
+                    <i class="fa-solid fa-plane-departure text-sky-300"></i>
+                    <span>XJ864 (17:20-22:30) / XJ865 (00:20-09:05)</span>
+                </div>
+                <div class="bg-white/15 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/20 flex items-center gap-2">
+                    <i class="fa-solid fa-user-check text-emerald-300"></i>
+                    <span id="hero-traveler">ผู้เดินทาง: Heart</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-10 space-y-12">
+
+        <!-- 1. Highlight สถานที่ในทริป (คลิกเพื่อดูรูปช่วงเดือน พ.ย. เพิ่มเติม) -->
+        <section>
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-sky-600">November Winter Vibe</span>
+                    <h2 class="text-2xl font-bold flex items-center gap-2 text-slate-800 mt-0.5">
+                        <i class="fa-solid fa-camera-retro text-sky-600"></i> ไฮไลท์สถานที่ในทริป (บรรยากาศช่วง พ.ย.)
+                    </h2>
+                </div>
+                <p class="text-xs text-slate-500">
+                    <i class="fa-solid fa-hand-pointer text-sky-500 mr-1"></i> คลิกที่การ์ดแต่ละใบเพื่อเปิดดูอัลบั้มรูปภาพช่วงฤดูหนาว (Nov) เพิ่มเติม
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Card 1: Charyn / Moon / Black Canyon -->
+                <a href="https://www.google.com/search?tbm=isch&q=Charyn+Canyon+Kazakhstan+November+winter+snow" target="_blank" class="card-hover group relative rounded-2xl overflow-hidden shadow-md h-64 block">
+                    <img src="https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=700&q=80" alt="Charyn Canyon" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-4 text-white">
+                        <span class="text-[11px] bg-amber-500/90 w-fit px-2 py-0.5 rounded font-semibold mb-1.5">23 พ.ย. • Day 2</span>
+                        <h3 class="font-bold text-base leading-snug">Charyn, Moon & Black Canyon</h3>
+                        <p class="text-xs text-slate-300 mt-1 line-clamp-2">ผาหินสีส้มแดงตัดกับหิมะขาวบางๆ ช่วงปลายเดือน พ.ย.</p>
+                        <span class="mt-2.5 inline-flex items-center text-[11px] text-sky-300 font-medium group-hover:underline">
+                            ดูรูปช่วง Nov เพิ่มเติม <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Card 2: Kolsai Lake -->
+                <a href="https://www.google.com/search?tbm=isch&q=Kolsai+Lake+Kazakhstan+November+winter+snow" target="_blank" class="card-hover group relative rounded-2xl overflow-hidden shadow-md h-64 block">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" alt="Kolsai Lake" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-4 text-white">
+                        <span class="text-[11px] bg-emerald-500/90 w-fit px-2 py-0.5 rounded font-semibold mb-1.5">24 พ.ย. • Day 3 (เช้า)</span>
+                        <h3 class="font-bold text-base leading-snug">Kolsai Lake & Pana Nomad</h3>
+                        <p class="text-xs text-slate-300 mt-1 line-clamp-2">ทะเลสาบมรกตกลางหุบเขาสนและเกล็ดน้ำแข็งช่วงต้นฤดูหนาว</p>
+                        <span class="mt-2.5 inline-flex items-center text-[11px] text-sky-300 font-medium group-hover:underline">
+                            ดูรูปช่วง Nov เพิ่มเติม <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Card 3: Kaindy Lake -->
+                <a href="https://www.google.com/search?tbm=isch&q=Kaindy+Lake+Kazakhstan+November+winter+snow" target="_blank" class="card-hover group relative rounded-2xl overflow-hidden shadow-md h-64 block">
+                    <img src="https://images.unsplash.com/photo-1688357166424-9f70f6c661c6?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" alt="Kaindy Lake" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-4 text-white">
+                        <span class="text-[11px] bg-teal-500/90 w-fit px-2 py-0.5 rounded font-semibold mb-1.5">24 พ.ย. • Day 3 (บ่าย)</span>
+                        <h3 class="font-bold text-base leading-snug">Kaindy Lake</h3>
+                        <p class="text-xs text-slate-300 mt-1 line-clamp-2">ขี่ม้าชมวิวป่าสนกลางน้ำสุดอันซีนท่ามกลางหิมะขาว</p>
+                        <span class="mt-2.5 inline-flex items-center text-[11px] text-sky-300 font-medium group-hover:underline">
+                            ดูรูปช่วง Nov เพิ่มเติม <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Card 4: Big Almaty Lake -->
+                <a href="https://www.google.com/search?tbm=isch&q=Big+Almaty+Lake+November+winter+snow" target="_blank" class="card-hover group relative rounded-2xl overflow-hidden shadow-md h-64 block">
+                    <img src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?auto=format&fit=crop&w=700&q=80" alt="Big Almaty Lake" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-4 text-white">
+                        <span class="text-[11px] bg-sky-500/90 w-fit px-2 py-0.5 rounded font-semibold mb-1.5">25 พ.ย. • Day 4</span>
+                        <h3 class="font-bold text-base leading-snug">Big Almaty Lake</h3>
+                        <p class="text-xs text-slate-300 mt-1 line-clamp-2">ขี่มอเตอร์ไซค์ชมวิวทะเลสาบบนยอดเขาหิมะเทียนซาน</p>
+                        <span class="mt-2.5 inline-flex items-center text-[11px] text-sky-300 font-medium group-hover:underline">
+                            ดูรูปช่วง Nov เพิ่มเติม <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Card 5: Shymbulak & Arbat -->
+                <a href="https://www.google.com/search?tbm=isch&q=Shymbulak+Ski+Resort+Almaty+November+winter" target="_blank" class="card-hover group relative rounded-2xl overflow-hidden shadow-md h-64 block">
+                    <img src="https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=700&q=80" alt="Shymbulak Ski Resort" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-4 text-white">
+                        <span class="text-[11px] bg-indigo-500/90 w-fit px-2 py-0.5 rounded font-semibold mb-1.5">26-27 พ.ย. • Day 5-6</span>
+                        <h3 class="font-bold text-base leading-snug">Shymbulak & Arbat Street</h3>
+                        <p class="text-xs text-slate-300 mt-1 line-clamp-2">นั่งกระเช้าเล่นสกีหิมะ & เดินช้อปปิ้งถนนคนเดิน Arbat</p>
+                        <span class="mt-2.5 inline-flex items-center text-[11px] text-sky-300 font-medium group-hover:underline">
+                            ดูรูปช่วง Nov เพิ่มเติม <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. พิกัดที่พักหลักในเมือง Almaty (Almatym Residence ใกล้ถนนคนเดิน Arbat) -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 bg-rose-50 text-rose-600 text-xs font-bold px-3 py-1 rounded-full mb-2">
+                        <i class="fa-brands fa-airbnb"></i> ที่พักหลักในเมือง Almaty (24 – 28 พ.ย. 2026 • 4 คืน)
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Almatym Residence (โซนถนนคนเดิน Arbat & MEGA Park)</h2>
+                    <p class="text-sm text-slate-600 mt-1">
+                        <i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>
+                        <strong>พิกัด:</strong> 7W8H+X83, улица Торекулова 95 (Torekulov Street 95), Almaty 050000
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <a href="https://www.google.com/maps/search/?api=1&query=7W8H%2BX83%2C+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A2%D0%BE%D1%80%D0%B5%D0%BA%D1%83%D0%BB%D0%BE%D0%B2%D0%B0+95%2C+Almaty" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-medium px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-location-arrow"></i> นำทางไปที่พัก (Google Maps)
+                    </a>
+                    <a href="https://maps.app.goo.gl/bB4ZfYn2hjJ4zt4y6" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs md:text-sm font-medium px-4 py-2.5 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-person-walking text-sky-600"></i> พิกัดถนนคนเดิน Arbat
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div class="lg:col-span-5 space-y-3 text-sm">
+                    <div class="bg-emerald-50/80 border border-emerald-200 p-4 rounded-xl text-emerald-950">
+                        <h4 class="font-bold text-sm mb-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-600"></i> ยืนยันทำเลที่พัก: ใกล้ถนนคนเดิน Arbat
+                        </h4>
+                        <p class="text-xs leading-relaxed text-emerald-900">
+                            ตั้งอยู่ในโครงการ <strong>ЖК Almatym (ซอย Torekulov 95)</strong> ห่างจาก <strong>Supermarket เพียงเดิน 5 นาที</strong> และเดินไป <strong>ถนนคนเดิน Arbat (Zhibek Zholy) เพียง 8-10 นาที</strong> (~750 เมตร)
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2.5 text-xs">
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <span class="text-slate-400 block">เช็คอิน / เช็คเอาท์</span>
+                            <strong class="text-slate-800 mt-0.5 block">24 พ.ย. (15:00) – 28 พ.ย. (12:00)</strong>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <span class="text-slate-400 block">ค่าที่พักต่อคน (4 คืน)</span>
+                            <strong class="text-emerald-600 mt-0.5 block">฿2,912.00 (จ่ายแล้ว)</strong>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <span class="text-slate-400 block">โรงแรมคืนแรก (22 พ.ย.)</span>
+                            <a href="https://www.trip.com/w/vt8YIh2tnW2" target="_blank" class="font-bold text-sky-600 hover:underline mt-0.5 block">
+                                Astra Hotel (Trip.com) <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <span class="text-slate-400 block">โรงแรมคืนที่ 2 (23 พ.ย.)</span>
+                            <a href="https://www.instagram.com/kolsay.nomads/" target="_blank" class="font-bold text-indigo-600 hover:underline mt-0.5 block">
+                                Pana Nomad Kolsai <i class="fa-brands fa-instagram text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="lg:col-span-7 rounded-xl overflow-hidden border border-slate-200 h-64 shadow-inner">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        loading="lazy" 
+                        allowfullscreen 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://maps.google.com/maps?q=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D0%BE%D1%80%D0%B5%D0%BA%D1%83%D0%BB%D0%BE%D0%B2%D0%B0%2095,%20Almaty&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. โซนหลัก: แผนการเดินทางรายวัน (ซ้าย) + ค่าใช้จ่ายและของต้องเตรียม (ขวา) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- คอลัมน์ซ้าย (7 ส่วน): ตารางทริปรายวัน ดึงสดจากแท็บ Trip Plan -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold flex items-center gap-2 text-slate-800">
+                        <i class="fa-solid fa-route text-sky-600"></i> แผนการเดินทาง (Trip Plan)
+                    </h2>
+                    <span class="text-xs bg-sky-100 text-sky-700 font-semibold px-3 py-1 rounded-full">
+                        อัปเดตตามแท็บ Trip Plan
+                    </span>
+                </div>
+
+                <!-- Container สำหรับแสดงการ์ดแต่ละวัน (สร้างอัตโนมัติด้วย JS) -->
+                <div id="itinerary-container" class="space-y-5"></div>
+            </div>
+
+            <!-- คอลัมน์ขวา (5 ส่วน): ตารางค่าใช้จ่ายจากแท็บ Detail & Checklist จากแท็บ Summary -->
+            <div class="lg:col-span-5 space-y-6">
+
+                <!-- กล่องสรุปค่าใช้จ่าย (Detail & Summary) -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-bold flex items-center gap-2 text-slate-800">
+                            <i class="fa-solid fa-wallet text-emerald-600"></i> สรุปค่าใช้จ่ายทริป
+                        </h2>
+                        <span class="text-xs bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-semibold">
+                            <i class="fa-solid fa-bolt mr-1"></i>Live จากแท็บ Detail
+                        </span>
+                    </div>
+
+                    <!-- การ์ดตัวเลขสรุป 3 ช่อง -->
+                    <div class="grid grid-cols-3 gap-2.5 bg-slate-900 text-white p-4 rounded-xl mb-5 shadow">
+                        <div>
+                            <p class="text-[11px] text-slate-400">ยอดรวมทั้งหมด</p>
+                            <p id="sum-total" class="text-lg md:text-xl font-bold text-white mt-0.5">฿33,923.49</p>
+                        </div>
+                        <div class="border-x border-slate-700 px-2.5">
+                            <p class="text-[11px] text-slate-400">จ่ายไปแล้ว (Heart)</p>
+                            <p id="sum-paid" class="text-lg md:text-xl font-bold text-emerald-400 mt-0.5">฿27,073.49</p>
+                        </div>
+                        <div class="pl-1">
+                            <p class="text-[11px] text-slate-400">เตรียมจ่ายหน้างาน</p>
+                            <p id="sum-unpaid" class="text-lg md:text-xl font-bold text-amber-400 mt-0.5">฿6,850.00</p>
+                        </div>
+                    </div>
+
+                    <!-- ตารางรายการค่าใช้จ่าย -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs md:text-sm text-left">
+                            <thead class="text-[11px] text-slate-500 uppercase bg-slate-50 border-b">
+                                <tr>
+                                    <th class="py-2.5 px-2">รายการ / Remark</th>
+                                    <th class="py-2.5 px-2 text-center">สถานะ</th>
+                                    <th class="py-2.5 px-2 text-right">จำนวนเงิน</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expense-tbody" class="divide-y divide-slate-100">
+                                <!-- สร้างอัตโนมัติด้วย JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- กล่องเที่ยวบิน (Flight Info) -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+                    <h2 class="text-lg font-bold flex items-center gap-2 mb-4 text-slate-800">
+                        <i class="fa-solid fa-plane-up text-sky-600"></i> ข้อมูลเที่ยวบิน (AirAsia X)
+                    </h2>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-sky-50/70 p-3.5 rounded-xl border border-sky-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] font-bold bg-sky-600 text-white px-2 py-0.5 rounded">ขาไป • XJ 864</span>
+                                <p class="font-semibold text-slate-800 mt-1.5">22 พ.ย. 2026 | 17:20 ➔ 22:30</p>
+                                <p class="text-xs text-slate-500">Don Mueang (DMK) ➔ Almaty (ALA)</p>
+                            </div>
+                            <i class="fa-solid fa-plane-departure text-2xl text-sky-400"></i>
+                        </div>
+                        <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded">ขากลับ • XJ 865</span>
+                                <p class="font-semibold text-slate-800 mt-1.5">28 พ.ย. 2026 | 00:20 ➔ 09:05</p>
+                                <p class="text-xs text-slate-500">Almaty (ALA) ➔ Don Mueang (DMK)</p>
+                            </div>
+                            <i class="fa-solid fa-plane-arrival text-2xl text-indigo-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- กล่อง Don't Forget Checklist (ดึงสดจากแท็บ Summary) -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-lg font-bold flex items-center gap-2 text-slate-800">
+                            <i class="fa-solid fa-suitcase-rolling text-sky-600"></i> Don't Forget! ของต้องเตรียม
+                        </h2>
+                        <span class="text-[11px] text-slate-400">คลิกติ๊กถูกเพื่อเช็กของ</span>
+                    </div>
+                    <div id="checklist-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                        <!-- สร้างอัตโนมัติด้วย JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-xs text-center py-8 mt-12">
+        <p>KAZAKHSTAN TRIP 2026 (22 - 28 Nov 2026) • ซิงค์ข้อมูลอัตโนมัติจาก Google Sheets</p>
+    </footer>
+
+    <!-- ==========================================
+         JavaScript สำหรับดึงข้อมูลสดจาก Google Sheet ทั้ง 3 แท็บ
+         ========================================== -->
+    <script>
+        // รหัส Google Sheet ของคุณ (ใช้ดึงข้อมูลจากแท็บ Summary, Trip Plan, และ Detail)
+        const SPREADSHEET_ID = "1kNlJZZiHae84Z2kqXxNBSG-XR3_eHyWzspCN7M7Zd-Y";
+
+        // คลังรูปภาพประจำสถานที่ (บรรยากาศช่วงเดือน พ.ย. / ฤดูหนาว) และลิงก์ค้นหารูปเพิ่มเติม
+        const LOCATION_MEDIA = {
+            "charyn": {
+                img: "https://images.unsplash.com/photo-1580655653885-65763b2597d0?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Charyn+Canyon+Kazakhstan+November+winter"
+            },
+            "moon": {
+                img: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Moon+Canyon+Kazakhstan+winter"
+            },
+            "black": {
+                img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Black+Canyon+Charyn+Kazakhstan"
+            },
+            "pana nomad": {
+                img: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/maps/search/?api=1&query=Pana+Nomad+Kolsai+Lake"
+            },
+            "kolsai": {
+                img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Kolsai+Lake+Kazakhstan+November+winter"
+            },
+            "kaindy": {
+                img: "https://images.unsplash.com/photo-1626014903698-77a23a33c79e?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Kaindy+Lake+Kazakhstan+November+winter"
+            },
+            "big almaty": {
+                img: "https://images.unsplash.com/photo-1569428034239-f9565e32e224?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Big+Almaty+Lake+November+winter+snow"
+            },
+            "shymbulak": {
+                img: "https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Shymbulak+Ski+Resort+November+winter"
+            },
+            "arbat": {
+                img: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/search?tbm=isch&q=Arbat+Street+Almaty+winter"
+            },
+            "almatym": {
+                img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.google.com/maps/search/?api=1&query=7W8H%2BX83%2C+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A2%D0%BE%D1%80%D0%B5%D0%BA%D1%83%D0%BB%D0%BE%D0%B2%D0%B0+95%2C+Almaty"
+            },
+            "astra": {
+                img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80",
+                morePhotosUrl: "https://www.trip.com/w/vt8YIh2tnW2"
+            }
+        };
+
+        // ==========================================
+        // ข้อมูลสำรอง (Fallback Data) ตรงตาม Google Sheet ล่าสุดของคุณ 100%
+        // ==========================================
+        const FALLBACK_TRIP_PLAN = [
+            { date: "22/11/2026", time: "17:20", activity: "Flight", location: "Don Mueang Airport", detail: "บินตรงจากดอนเมือง (DMK) ถึงสนามบินอัลมาตี (ALA) เวลา 22:30 น.", link: "XJ864" },
+            { date: "22/11/2026", time: "23:30", activity: "Hotel", location: "Astra Hotel (Trip.com)", detail: "เข้าเช็คอินโรงแรมที่พักคืนแรก และแวะซื้อของกิน-ขนมรองท้องที่ Supermarket", link: "https://www.trip.com/w/vt8YIh2tnW2" },
+            { date: "23/11/2026", time: "เช้า", activity: "Activity", location: "Charyn canyon", detail: "ออกเดินทางสู่อุทยานฯ Charyn Canyon เดินเล่นถ่ายรูปชมหุบเขาหินสีส้มแดง (ขาเข้าเดินชมวิว ขาออกนั่งรถอุทยานกลับขึ้นมา)", link: "https://www.instagram.com/reel/DTfgRz4iXbp/" },
+            { date: "23/11/2026", time: "บ่าย", activity: "Activity", location: "Moon canyon", detail: "แวะจุดชมวิว Moon Canyon ชมผาหินรูปร่างแปลกตาคล้ายพื้นผิวดวงจันทร์ในเขตอุทยานฯ เดียวกัน", link: "https://www.instagram.com/reel/DVOcE8BkXtp/" },
+            { date: "23/11/2026", time: "บ่าย", activity: "Activity", location: "Black canyon", detail: "แวะจุดชมวิว Black Canyon ถ่ายรูปกับหน้าผาหินสีเข้มตัดกับสายน้ำด้านล่าง", link: "https://www.instagram.com/reel/DVTh8Rokf-0/" },
+            { date: "23/11/2026", time: "เย็น", activity: "Hotel", location: "Pana Nomad Kolsai lake", detail: "เดินทางเข้าที่พัก Pana Nomad Kolsai Lake พักผ่อนท่ามกลางธรรมชาติ (รวมอาหารเช้า)", link: "https://www.instagram.com/kolsay.nomads/" },
+            { date: "24/11/2026", time: "เช้า", activity: "Activity", location: "Kolsai lake", detail: "ชมวิวทะเลสาบกลางหุบเขา Kolsai Lake ปั่นเรือถีบชมน้ำใสสีมรกตและถ่ายรูป", link: "https://www.instagram.com/reel/Db2xgzsPqEG/" },
+            { date: "24/11/2026", time: "บ่าย", activity: "Activity", location: "Kaindy lake", detail: "ขี่ม้าขึ้นไปชมวิวป่าสนกลางน้ำสุดอันซีนที่ทะเลสาบ Kaindy Lake และแวะถ่ายรูป", link: "https://www.instagram.com/reel/DYuvnlhSI_h/" },
+            { date: "24/11/2026", time: "เย็น", activity: "Hotel", location: "Almatym Residence (Airbnb)", detail: "กลับเข้าเมือง Almaty เช็คอินที่พักหลัก Airbnb (ซอย Torekulov 95 พักยาว 4 คืนถึงวันกลับ) เดินไป Supermarket 5 นาที และเดินไปถนนคนเดิน Arbat 10 นาที", link: "Almaty - Apartments for Rent in Almaty, Almaty Region, Kazakhstan - Airbnb" },
+            { date: "25/11/2026", time: "เช้า", activity: "Activity", location: "Big Almaty lake", detail: "ขึ้นเขาสู่ Big Almaty Lake ขี่มอเตอร์ไซค์รับลมหนาวและเดินเล่นถ่ายรูปริมทะเลสาบสีเทอร์ควอยซ์", link: "https://www.instagram.com/reel/Dah-h0VEeHY/" },
+            { date: "25/11/2026", time: "เย็น", activity: "Hotel", location: "Almatym Residence (Airbnb)", detail: "เดินทางลงจากเขา กลับเข้าที่พัก Airbnb ย่าน Arbat พักผ่อนตามอัธยาศัย", link: "Almaty - Apartments for Rent in Almaty, Almaty Region, Kazakhstan - Airbnb" },
+            { date: "26/11/2026", time: "เช้า", activity: "Activity", location: "Shymbulak", detail: "นั่งกระเช้าลอยฟ้าขึ้นสู่ Shymbulak Ski Resort เล่นสกีหิมะ หรือเดินเล่นถ่ายรูปชมวิวภูเขาหิมะ", link: "https://www.instagram.com/reel/DYuGFDPSm8j/" },
+            { date: "26/11/2026", time: "เย็น", activity: "Hotel", location: "Almatym Residence (Airbnb)", detail: "นั่งกระเช้าลงจากสกีรีสอร์ท เดินทางกลับที่พัก Airbnb ย่าน Arbat", link: "Almaty - Apartments for Rent in Almaty, Almaty Region, Kazakhstan - Airbnb" },
+            { date: "27/11/2026", time: "ทั้งวัน", activity: "Activity", location: "Arbat in Almaty", detail: "วันอิสระ (Free Time) เดินเล่นช้อปปิ้งของฝาก แวะคาเฟ่ในเมืองที่ถนนคนเดิน Arbat เตรียมตัวเดินทางไปสนามบินช่วงดึก", link: "https://maps.app.goo.gl/bB4ZfYn2hjJ4zt4y6" },
+            { date: "28/11/2026", time: "0:20", activity: "Flight", location: "Almaty Airport", detail: "บินตรงกลับกรุงเทพฯ ด้วยเที่ยวบิน XJ865 ถึงสนามบินดอนเมือง (DMK) เวลา 09:05 น.", link: "XJ865" }
+        ];
+
+        const FALLBACK_EXPENSES = [
+            { item: "ค่าโรงแรม 1 คืน", amount: 1125.00, date: "22/11/2026-23/11/2026", payer: "Heart", remark: "โรงแรมประมาณคนละ 2250 2 คน 1 ห้อง" },
+            { item: "ค่าทัวร์", amount: 3000.00, date: "23/11/2026 - 24/11/2026", payer: "", remark: "รถทัวร์พาเที่ยว 2 วัน 500 USD 6 คน" },
+            { item: "ค่าโรงแรม 1 คืน", amount: 2250.00, date: "23/11/2026", payer: "Heart", remark: "โรงแรมประมาณห้องละ 4500 นอนได้ 2 คน 3 ห้อง" },
+            { item: "ค่าโรงแรม 4 คืน", amount: 2912.00, date: "24/11/2026 - 28/11/2026", payer: "Heart", remark: "Air bnb คนละ 2912" },
+            { item: "ค่าเรือถีบ", amount: 300.00, date: "24/11/2026", payer: "", remark: "เรือถีบ 600 ต่อลำ 1 ลำ 2 คน (3 ลำ) (เช็คสภาพน้ำแข็งหน้างานช่วง พ.ย.)" },
+            { item: "ค่าขี่ม้า", amount: 550.00, date: "24/11/2026", payer: "", remark: "คนละ 550" },
+            { item: "ค่ามอเตอร์ไซ", amount: 2000.00, date: "25/11/2026", payer: "", remark: "ประมาณคันละ 2000 6 คัน" },
+            { item: "ค่ากระเช้า", amount: 1000.00, date: "26/11/2026", payer: "", remark: "กระเช้าขึ้น 1000 ต่อคน" },
+            { item: "ค่าเครื่องบิน", amount: 20786.49, date: "14/08/2026", payer: "Heart", remark: "AirAsia X (XJ864 / XJ865)" }
+        ];
+
+        const FALLBACK_CHECKLIST = [
+            "เสื้อกันหนาว", "HEATTECH", "ถุงมือ / หมวก / ผ้าพันคอ",
+            "Power Bank", "Universal Adapter", "กระเป๋าใบเล็ก",
+            "Passport", "ยาประจำตัว", "MONEY (KZT)"
+        ];
+
+        // ฟังก์ชันดึงข้อมูล Google Sheet ด้วย JSONP (ไม่ติดบล็อก CORS เวลาเปิดไฟล์ HTML ในเครื่อง)
+        function fetchSheetJSONP(sheetName) {
+            return new Promise((resolve, reject) => {
+                const callbackName = "gvizCb_" + Math.random().toString(36).substring(2, 10);
+                const script = document.createElement("script");
+                const timeout = setTimeout(() => {
+                    cleanup();
+                    reject(new Error("Timeout loading " + sheetName));
+                }, 8000);
+
+                function cleanup() {
+                    clearTimeout(timeout);
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                }
+
+                window[callbackName] = function(response) {
+                    cleanup();
+                    if (response && response.table) {
+                        resolve(response.table);
+                    } else {
+                        reject(new Error("Invalid table response"));
+                    }
+                };
+
+                script.onerror = function() {
+                    cleanup();
+                    reject(new Error("Script error loading " + sheetName));
+                };
+
+                const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=responseHandler:${callbackName}&sheet=${encodeURIComponent(sheetName)}`;
+                script.src = url;
+                document.body.appendChild(script);
+            });
+        }
+
+        // ฟังก์ชันช่วยอ่านค่าจากเซลล์ของ Google Sheet
+        function getCellVal(row, idx) {
+            if (!row || !row.c || !row.c[idx]) return "";
+            const cell = row.c[idx];
+            return (cell.f !== undefined && cell.f !== null) ? String(cell.f).trim() : (cell.v !== undefined && cell.v !== null ? String(cell.v).trim() : "");
+        }
+
+        function getCellNum(row, idx) {
+            if (!row || !row.c || !row.c[idx]) return 0;
+            const cell = row.c[idx];
+            if (typeof cell.v === "number") return cell.v;
+            const raw = String(cell.f || cell.v || "").replace(/[^0-9.-]+/g, "");
+            return parseFloat(raw) || 0;
+        }
+
+        // ค้นหารูปภาพและลิงก์รูปเพิ่มเติมตามชื่อสถานที่
+        function getMediaForLocation(locationName) {
+            const locLower = (locationName || "").toLowerCase();
+            for (const key in LOCATION_MEDIA) {
+                if (locLower.includes(key)) {
+                    return LOCATION_MEDIA[key];
+                }
+            }
+            return null;
+        }
+
+        // แสดงผลตารางแผนการเดินทาง (Trip Plan)
+        function renderTripPlan(items) {
+            const container = document.getElementById("itinerary-container");
+            container.innerHTML = "";
+
+            // จัดกลุ่มตามวันที่ (Date)
+            const grouped = {};
+            const dateOrder = [];
+            items.forEach(item => {
+                const d = item.date || "ไม่ระบุวันที่";
+                if (!grouped[d]) {
+                    grouped[d] = [];
+                    dateOrder.push(d);
+                }
+                grouped[d].push(item);
+            });
+
+            dateOrder.forEach((dateStr, idx) => {
+                const dayNum = idx + 1;
+                const dayCard = document.createElement("div");
+                dayCard.className = "bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200/80";
+
+                let eventsHtml = "";
+                grouped[dateStr].forEach(ev => {
+                    const actType = (ev.activity || "").toLowerCase();
+                    let badgeClass = "bg-emerald-50 text-emerald-700 border-emerald-200";
+                    let iconClass = "fa-camera";
+
+                    if (actType.includes("flight")) {
+                        badgeClass = "bg-sky-50 text-sky-700 border-sky-200";
+                        iconClass = "fa-plane";
+                    } else if (actType.includes("hotel")) {
+                        badgeClass = "bg-indigo-50 text-indigo-700 border-indigo-200";
+                        iconClass = "fa-bed";
+                    } else if (actType.includes("transport")) {
+                        badgeClass = "bg-amber-50 text-amber-700 border-amber-200";
+                        iconClass = "fa-van-shuttle";
+                    }
+
+                    // ตรวจสอบลิงก์และสร้างปุ่มกด
+                    let actionButtons = "";
+                    const rawLink = (ev.link || "").trim();
+
+                    if (rawLink.startsWith("http")) {
+                        let btnLabel = "เปิดลิงก์เพิ่มเติม";
+                        let btnStyle = "bg-slate-100 text-slate-700 hover:bg-slate-200";
+                        let btnIcon = "fa-up-right-from-square";
+
+                        if (rawLink.includes("instagram.com/reel")) {
+                            btnLabel = "ดูคลิปรีวิว (IG Reel)";
+                            btnStyle = "bg-pink-50 text-pink-600 hover:bg-pink-100 border border-pink-200";
+                            btnIcon = "fa-brands fa-instagram";
+                        } else if (rawLink.includes("instagram.com")) {
+                            btnLabel = "ดูเพจที่พัก (Instagram)";
+                            btnStyle = "bg-purple-50 text-purple-600 hover:bg-purple-100 border border-purple-200";
+                            btnIcon = "fa-brands fa-instagram";
+                        } else if (rawLink.includes("trip.com")) {
+                            btnLabel = "ดูโรงแรมบน Trip.com";
+                            btnStyle = "bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-200";
+                            btnIcon = "fa-solid fa-hotel";
+                        } else if (rawLink.includes("maps.app.goo.gl") || rawLink.includes("google.com/maps")) {
+                            btnLabel = "เปิดพิกัด Google Maps";
+                            btnStyle = "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200";
+                            btnIcon = "fa-solid fa-location-dot";
+                        }
+
+                        actionButtons += `
+                            <a href="${rawLink}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition ${btnStyle}">
+                                <i class="${btnIcon}"></i> ${btnLabel}
+                            </a>
+                        `;
+                    } else if (rawLink.toLowerCase().includes("airbnb") || (ev.location || "").toLowerCase().includes("airbnb")) {
+                        // กรณีช่อง Link เป็นข้อความชื่อเว็บ Airbnb ให้แปลงเป็นปุ่มเปิดแผนที่ซอย Torekulov 95 ทันที
+                        const airbnbMapUrl = "https://www.google.com/maps/search/?api=1&query=7W8H%2BX83%2C+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A2%D0%BE%D1%80%D0%B5%D0%BA%D1%83%D0%BB%D0%BE%D0%B2%D0%B0+95%2C+Almaty";
+                        actionButtons += `
+                            <a href="${airbnbMapUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200 transition">
+                                <i class="fa-solid fa-map-pin"></i> พิกัดที่พัก Almatym (Torekulov 95)
+                            </a>
+                        `;
+                    } else if (rawLink !== "") {
+                        actionButtons += `
+                            <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                                <i class="fa-solid fa-ticket"></i> เที่ยวบิน ${rawLink}
+                            </span>
+                        `;
+                    }
+
+                    // รูปภาพตัวอย่างของสถานที่ + ปุ่มดูรูปช่วง Nov เพิ่มเติม
+                    const media = getMediaForLocation(ev.location);
+                    let thumbnailHtml = "";
+                    if (media) {
+                        actionButtons += `
+                            <a href="${media.morePhotosUrl}" target="_blank" class="inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                                <i class="fa-regular fa-images"></i> ดูรูปสถานที่เพิ่มเติม
+                            </a>
+                        `;
+                        thumbnailHtml = `
+                            <a href="${media.morePhotosUrl}" target="_blank" class="shrink-0 group relative w-full sm:w-28 h-28 rounded-xl overflow-hidden border border-slate-200 block">
+                                <img src="${media.img}" alt="${ev.location}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                <span class="absolute bottom-1 right-1 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </span>
+                            </a>
+                        `;
+                    }
+
+                    eventsHtml += `
+                        <div class="flex flex-col sm:flex-row gap-4 py-4 first:pt-0 last:pb-0 border-b last:border-b-0 border-slate-100">
+                            <div class="sm:w-20 shrink-0 flex sm:flex-col items-center sm:items-start justify-between sm:justify-start gap-1">
+                                <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg">${ev.time || "-"}</span>
+                                <span class="text-[11px] font-medium px-2 py-0.5 rounded border ${badgeClass}">
+                                    <i class="fa-solid ${iconClass} mr-1"></i>${ev.activity}
+                                </span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-bold text-slate-800 text-base">${ev.location || ev.activity}</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed">${ev.detail || ""}</p>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    ${actionButtons}
+                                </div>
+                            </div>
+                            ${thumbnailHtml}
+                        </div>
+                    `;
+                });
+
+                dayCard.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="bg-sky-600 text-white text-xs font-bold px-3 py-1 rounded-lg shadow-sm">DAY ${dayNum}</span>
+                            <h3 class="text-lg font-bold text-slate-800">${dateStr}</h3>
+                        </div>
+                        <span class="text-xs text-slate-400">${grouped[dateStr].length} กิจกรรม</span>
+                    </div>
+                    <div class="divide-y divide-slate-100">
+                        ${eventsHtml}
+                    </div>
+                `;
+                container.appendChild(dayCard);
+            });
+        }
+
+        // แสดงผลตารางค่าใช้จ่าย (Detail)
+        function renderExpenses(expenses) {
+            const tbody = document.getElementById("expense-tbody");
+            tbody.innerHTML = "";
+
+            let total = 0;
+            let paid = 0;
+
+            expenses.forEach(exp => {
+                total += exp.amount;
+                const isPaid = exp.payer && exp.payer.trim() !== "";
+                if (isPaid) paid += exp.amount;
+
+                const statusBadge = isPaid
+                    ? `<span class="inline-flex items-center gap-1 text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full font-medium"><i class="fa-solid fa-check"></i> ${exp.payer}</span>`
+                    : `<span class="inline-flex items-center gap-1 text-[11px] bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full font-medium">รอจ่ายหน้างาน</span>`;
+
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-slate-50/80 transition";
+                tr.innerHTML = `
+                    <td class="py-3 px-2">
+                        <div class="font-semibold text-slate-800">${exp.item}</div>
+                        <div class="text-[11px] text-slate-500 mt-0.5">${exp.remark || exp.date || ""}</div>
+                    </td>
+                    <td class="py-3 px-2 text-center whitespace-nowrap">${statusBadge}</td>
+                    <td class="py-3 px-2 text-right font-bold text-slate-800 whitespace-nowrap">
+                        ฿${exp.amount.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const unpaid = total - paid;
+            document.getElementById("sum-total").innerText = "฿" + total.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("sum-paid").innerText = "฿" + paid.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("sum-unpaid").innerText = "฿" + unpaid.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // แสดงผลรายการของต้องเตรียม (Checklist)
+        function renderChecklist(items) {
+            const container = document.getElementById("checklist-container");
+            container.innerHTML = "";
+            items.forEach(item => {
+                const label = document.createElement("label");
+                label.className = "flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-100 bg-slate-50/70 hover:bg-sky-50/50 cursor-pointer transition";
+                label.innerHTML = `
+                    <input type="checkbox" class="w-4 h-4 accent-sky-600 rounded">
+                    <span class="text-xs font-medium text-slate-700">${item}</span>
+                `;
+                container.appendChild(label);
+            });
+        }
+
+        // ฟังก์ชันหลักสำหรับซิงค์ข้อมูลสดจากทั้ง 3 แท็บของ Google Sheet
+        async function syncAllSheets() {
+            const statusEl = document.getElementById("sync-status");
+            const dotEl = document.getElementById("sync-dot");
+            const iconEl = document.getElementById("sync-icon");
+
+            statusEl.innerText = "กำลังดึงข้อมูลล่าสุดจาก Google Sheet...";
+            iconEl.classList.add("fa-spin");
+
+            try {
+                // 1. ดึงแท็บ Trip Plan
+                const tripTable = await fetchSheetJSONP("Trip Plan");
+                const parsedTrip = [];
+                let lastDate = "";
+
+                tripTable.rows.forEach(row => {
+                    const rawDate = getCellVal(row, 0);
+                    const time = getCellVal(row, 1);
+                    const activity = getCellVal(row, 2);
+                    const location = getCellVal(row, 3);
+                    const detail = getCellVal(row, 4);
+                    const link = getCellVal(row, 5);
+
+                    // ข้ามแถวหัวตารางหรือแถวว่าง
+                    if (rawDate.toLowerCase() === "date" || (!rawDate && !activity && !location && !detail)) return;
+
+                    if (rawDate) lastDate = rawDate;
+                    parsedTrip.push({
+                        date: lastDate,
+                        time: time,
+                        activity: activity,
+                        location: location,
+                        detail: detail,
+                        link: link
+                    });
+                });
+
+                if (parsedTrip.length > 0) {
+                    renderTripPlan(parsedTrip);
+                }
+
+                // 2. ดึงแท็บ Detail (ค่าใช้จ่าย)
+                const detailTable = await fetchSheetJSONP("Detail");
+                const parsedExpenses = [];
+
+                detailTable.rows.forEach(row => {
+                    const item = getCellVal(row, 0);
+                    const amount = getCellNum(row, 1);
+                    const date = getCellVal(row, 2);
+                    const payer = getCellVal(row, 3);
+                    const remark = getCellVal(row, 14);
+
+                    if (!item || item === "รายการ" || item.includes("KAZAKHSTAN") || amount <= 0) return;
+
+                    parsedExpenses.push({
+                        item: item,
+                        amount: amount,
+                        date: date,
+                        payer: payer,
+                        remark: remark
+                    });
+                });
+
+                if (parsedExpenses.length > 0) {
+                    renderExpenses(parsedExpenses);
+                }
+
+                // 3. ดึงแท็บ Summary (อุณหภูมิ และ Don't Forget)
+                const summaryTable = await fetchSheetJSONP("Summary");
+                summaryTable.rows.forEach(row => {
+                    const key = getCellVal(row, 0).toLowerCase();
+                    const val = getCellVal(row, 1);
+                    if (key.includes("temperature") && val) {
+                        document.getElementById("hero-temp").innerText = val;
+                    }
+                    if (key.includes("don") && val) {
+                        const list = val.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+                        if (list.length > 0) renderChecklist(list);
+                    }
+                });
+
+                const now = new Date().toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+                statusEl.innerText = `ซิงค์ข้อมูลสดจาก Google Sheet สำเร็จเมื่อ ${now} น.`;
+                dotEl.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+            } catch (err) {
+                console.warn("ใช้ข้อมูลสำรองเนื่องจาก:", err);
+                statusEl.innerText = "แสดงผลด้วยข้อมูลล่าสุดจาก Sheet (โหมดออฟไลน์/สำรอง)";
+                dotEl.className = "w-2.5 h-2.5 rounded-full bg-amber-400";
+            } finally {
+                iconEl.classList.remove("fa-spin");
+            }
+        }
+
+        // เริ่มต้นแสดงข้อมูลทันทีเมื่อเปิดหน้าเว็บ แล้วดึงข้อมูลสดจาก Google Sheet ทับอีกที
+        window.addEventListener("DOMContentLoaded", () => {
+            renderTripPlan(FALLBACK_TRIP_PLAN);
+            renderExpenses(FALLBACK_EXPENSES);
+            renderChecklist(FALLBACK_CHECKLIST);
+            syncAllSheets();
+        });
+    </script>
+</body>
+</html>
